@@ -34,31 +34,45 @@
   <div class="container">
     <div class="row">
       <div class="one-third column" style="margin-top: 10%">
-        <a class="button button-primary u-full-width" href="/left">Left</a>
+        <a class="button button-primary u-full-width" onclick="updateState('left')" href="javascript:void(0)">
+            Left
+        </a>
       </div>
       <div class="one-third column" style="margin-top: 10%">
-        <a class="button button-primary u-full-width" href="/forward">Forward</a>
+        <a class="button button-primary u-full-width" onclick="updateState('forward')" href="javascript:void(0)">
+            Forward
+        </a>
       </div>
       <div class="one-third column" style="margin-top: 10%">
-        <a class="button button-primary u-full-width" href="/right">Right</a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="one-third column" style="margin-top: 10%">
-        <a class="button button-primary u-full-width" href="/clockwise">Clockwise</a>
-      </div>
-      <div class="one-third column" style="margin-top: 10%">
-        <a class="button button-primary u-full-width" href="/back">Back</a>
-      </div>
-      <div class="one-third column" style="margin-top: 10%">
-        <a class="button button-primary u-full-width" href="/anti-clockwise">Anti-clockwise</a>
+        <a class="button button-primary u-full-width" onclick="updateState('right')" href="javascript:void(0)">
+            Right
+        </a>
       </div>
     </div>
     <div class="row">
       <div class="one-third column" style="margin-top: 10%">
+        <a class="button button-primary u-full-width" onclick="updateState('clockwise')" href="javascript:void(0)">
+            Clockwise
+        </a>
       </div>
       <div class="one-third column" style="margin-top: 10%">
-        <a class="button button-primary u-full-width" href="/stop">Stop</a>
+        <a class="button button-primary u-full-width" onclick="updateState('back')" href="javascript:void(0)">
+            Back
+        </a>
+      </div>
+      <div class="one-third column" style="margin-top: 10%">
+        <a class="button button-primary u-full-width" onclick="updateState('anti-clockwise')" href="javascript:void(0)">
+            Anti-clockwise
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="one-third column" style="margin-top: 10%">
+      </div>
+      <div class="one-third column" style="margin-top: 10%">
+        <a class="button button-primary u-full-width" onclick="updateState('stop')" href="javascript:void(0)">
+            Stop
+        </a>
       </div>
       <div class="one-third column" style="margin-top: 10%">
       </div>
@@ -67,5 +81,11 @@
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="{{ url_for('static', filename='js/httpClient.js') }}"></script>
+  <script>
+      function updateState(state) {
+          httpClient.get("/" + state)
+      }
+  </script>
 </body>
 </html>
