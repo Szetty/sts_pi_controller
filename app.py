@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 from motors import update_state
+from camera.camera import get_frame
 
 app = Flask(__name__)
 
@@ -14,7 +15,15 @@ def update_robot(state=None):
     return "ok"
 
 
-@app.route("/")
+@app.route('/video')
+def video():
+    frame = get_frame()
+    response = (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+    return Response(response, mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+@app.route('/')
 def root():
     return render_main()
 

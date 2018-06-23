@@ -56,7 +56,11 @@ stateToFunction = {
 
 
 def update_state(state):
-    if eh is None:
-        print("State #" + state + "# was called")
-    else:
-        stateToFunction[state]()
+    try:
+        f = stateToFunction[state]
+        if eh is None:
+            print("State #" + f.__name__ + "# was called")
+        else:
+            f()
+    except KeyError:
+        print("No state with name " + state)
